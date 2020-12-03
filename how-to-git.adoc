@@ -1,0 +1,89 @@
+= How To Git
+{localdatetime}
+:toc:
+:toc-title: Inhaltsverzeichnis
+:toclevels: 2
+:sectnums:
+:icons: font
+//:source-highlighter: highlightjs
+:source-highlighter: rouge
+:xrefstyle: full
+:figure-caption: Abbildung
+:table-caption: Tabelle
+
+== Voraussetzungen
+
+=== Visual Studio Code
+- GitLens Erweiterung installieren
+- Source Control ist bereits enthalten
+
+=== GitHub Desktop
+- link:https://desktop.github.com/[GitHub Desktop Download]
+
+
+== Konventionen
+
+=== Dokumentation:
+Der Branch _main_ enthält abgesegnete die Dokumentation.
+Der Branch _development_ enthält aktuelle Änderungen.
+
+Es gibt für jede Iteration einen Pull Request (Stand von development wird auf main gepackt):
+
+* 	Hier können die Änderungen reviewed werden, Hinweise gegeben werden etc.	
+** 	Wie und warum?
+* 	_Rebase and merge_ erfolgt durch Julian/Jonas/Carl/? durch:
+** 	git checkout development
+**  git rebase master
+
+
+=== Entwicklung:
+*_Relevant, sobald Code geschrieben wird_*
+
+Es werden Feature-Branches eingeführt. Jedes Issue wird auf einem dedizierten(?) Branch bearbeitet.
+
+Ist das Issue beendet, gibt es ein Review von 1 Person (evtl. Head of Dev etc..?)
+
+
+== Workflow
+
+=== Issue erstellen + KANBAN Board
+*	Erstellen eines Issues
+**	Beschreibender Titel, Labels etc.
+** 	Checkboxen zur Beschreibung hinzufügen falls es sich anbietet (guter Überblick über Fortschritt)
+**	Bearbeiter festlegen wenn bereits bekannt
+**  *Hinzufügen zum KANBAN Board* und zum aktuellen Meilenstein
+
+*	Card des erstellten Issues im Board platzieren (To-Do, In progress etc.)
+
+
+=== Issue bearbeiten
+* Lokal auf _dev_ mit VSCode das Issue im Projekt bearbeiten
+* Wenn
+
+=== Merge Conflict lösen
+* ...
+
+
+=== Git Rebase mit Interface
+oder: *Wie kann ich meinen Branch dev auf den Stand von Branch main bringen?*
+
+*Wann?* Wenn im Branch main Änderungen existieren, die ich in dev benötige.
+
+Im GitHub Dektop:
+
+. 	Branch _dev_ auswählen
+. 	Branch -> _Rebase Current Branch_ (Ctrl+Shift+E)
+. 	Auswahl von main -> _Start Rebase_
+.. 	Wenn Konflikte: _Open in Visual Studio Code_
+.. 	VSCode öffnet sich und Konflikte können behoben werden (Farbliche Darstellung)
+.. 	LINK ZU KONFLIKTE LÖSEN?
+. 	_Continue Rebase_...
+
+
+
+== Other stuff
+Projekt-Management Board in der Orga
+Dokumentation mit KANBAN Board
+Entwicklung mit Board (später)
+
+Wollen Coaches auch Boards sehen?
