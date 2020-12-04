@@ -20,6 +20,12 @@
 === GitHub Desktop
 - link:https://desktop.github.com/[GitHub Desktop Download]
 
+=== .gitconfig includieren
+Jeder muss nach dem Clonen von der Repo die `.gitconfig` local includieren. (Gilt nur für diese Repo)
+
+```shell
+git config --local include.path ../.gitconfig
+```
 
 == Konventionen
 
@@ -29,7 +35,7 @@ Der Branch _development_ enthält aktuelle Änderungen.
 
 Es gibt für jede Iteration einen Pull Request (Stand von development wird auf main gepackt):
 
-* 	Hier können die Änderungen reviewed werden, Hinweise gegeben werden etc.	
+* 	Hier können die Änderungen reviewed werden, Hinweise gegeben werden etc.
 ** 	Wie und warum?
 * 	_Rebase and merge_ erfolgt durch Julian/Jonas/Carl/? durch:
 ** 	git checkout development
