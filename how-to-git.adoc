@@ -10,6 +10,7 @@
 :xrefstyle: full
 :figure-caption: Abbildung
 :table-caption: Tabelle
+:experimental:
 
 == Voraussetzungen
 
@@ -30,8 +31,8 @@ git config --local include.path ../.gitconfig
 == Konventionen
 
 === Dokumentation:
-Der Branch _main_ enthält abgesegnete die Dokumentation.
-Der Branch _development_ enthält aktuelle Änderungen.
+Der Branch `main` enthält eine abgesegnete Dokumentation.
+Der Branch `dev` (development) enthält aktuelle Änderungen.
 
 Es gibt für jede Iteration einen Pull Request (Stand von development wird auf main gepackt):
 
@@ -45,16 +46,23 @@ Es gibt für jede Iteration einen Pull Request (Stand von development wird auf m
 === Entwicklung:
 *_Relevant, sobald Code geschrieben wird_*
 
-Es werden Feature-Branches eingeführt. Jedes Issue wird auf einem dedizierten(?) Branch bearbeitet.
+Es werden Feature-Branches eingeführt. Jedes Issue wird auf einem dedizierten Branch (mit deskriptivem Namen) bearbeitet.
 
-Ist das Issue beendet, gibt es ein Review von 1 Person (evtl. Head of Dev etc..?)
+_Genauere Informationen_:
+
+*   https://guides.github.com/introduction/flow/
+*   https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
+Der Pull-Request unterliegt dann einem Review.
 
 
 == Workflow
 
+Wir befinden uns im Repository _Dokumentation_.
+
 === Issue erstellen + KANBAN Board
 *	Erstellen eines Issues
-**	Beschreibender Titel, Labels etc.
+**	Beschreibender Titel  (z.B. Kategorie: Aufgabe), Labels etc.
 ** 	Checkboxen zur Beschreibung hinzufügen falls es sich anbietet (guter Überblick über Fortschritt)
 **	Bearbeiter festlegen wenn bereits bekannt
 **  *Hinzufügen zum KANBAN Board* und zum aktuellen Meilenstein
@@ -63,27 +71,48 @@ Ist das Issue beendet, gibt es ein Review von 1 Person (evtl. Head of Dev etc..?
 
 
 === Issue bearbeiten
-* Lokal auf _dev_ mit VSCode das Issue im Projekt bearbeiten
-* Wenn
+* Lokal mit VSCode auf dem Branch `dev` das Issue bearbeiten
+* Vor dem `git push` einen `git pull` ausführen, um lokale Dateien auf den neuesten Stand zu bringen
+** *VSCode*: Sync Icon neben dem Branchauswahlmenü klicken
+** *GitHub Desktop*: letzten Tab zum synchronisieren klicken
 
-=== Merge Conflict lösen
-* ...
+
+=== Git Rebase
+
+> Wie kann ich meinen Branch `dev` auf den Stand von Branch `main` bringen?
+
+*Wann?* -> Wenn im Branch `main` Änderungen existieren, die ich in `dev` benötige.
+
+==== Was ist ein Rebase?
+Mit einem Rebase werden bestehende Änderungen nicht zusammengemischt wie beim Merge, was einen extra Commit (Merge-Commit) erzeugt, sondern die Commits an einen neuen Ursprung verschoben. Dabei wird sozusagen die "Geschichte neu geschrieben".
+
+Einen Rebase darf man nur machen, wenn man sich sicher ist, dass keiner mehr an der aktuellen Branch arbeitet, da es zu unangenehmen Synchronisierungsproblemen kommt.
+
+* Gute Erklärung: https://www.atlassian.com/de/git/tutorials/rewriting-history/git-rebase
+
+*Was ist der Vorteil?*
+
+> Ein sauberer, linearer Commit-Verlauf.
+
+==== Anleitung GUI
+
+===== GitHub Dektop
+
+. Branch `dev` auswählen
+. Branch -> `Rebase Current Branch` (kbd:[Ctrl + Shift + E])
+. 	Auswahl von main -> `Start Rebase`
+.. 	Wenn Konflikte: `Open in Visual Studio Code`
+.. 	VSCode öffnet sich und Konflikte können behoben werden (farbliche Darstellung)
+.. 	In der Datei befinden sich jetzt Marker, die entfernt werden müssen. Der Inhalt kann nach belieben angepasst werden. Am Besten sollte aber nur der Konflikt gelöst werden. https://www.atlassian.com/de/git/tutorials/using-branches/merge-conflicts[Weitere Infos]
+. 	`Continue Rebase`
+
+====== Spezial
+
+=== Rebase Conflict lösen
 
 
-=== Git Rebase mit Interface
-oder: *Wie kann ich meinen Branch dev auf den Stand von Branch main bringen?*
 
-*Wann?* Wenn im Branch main Änderungen existieren, die ich in dev benötige.
 
-Im GitHub Dektop:
-
-. 	Branch _dev_ auswählen
-. 	Branch -> _Rebase Current Branch_ (Ctrl+Shift+E)
-. 	Auswahl von main -> _Start Rebase_
-.. 	Wenn Konflikte: _Open in Visual Studio Code_
-.. 	VSCode öffnet sich und Konflikte können behoben werden (Farbliche Darstellung)
-.. 	LINK ZU KONFLIKTE LÖSEN?
-. 	_Continue Rebase_...
 
 
 
