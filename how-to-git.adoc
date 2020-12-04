@@ -24,6 +24,7 @@
 === .gitconfig includieren
 Jeder muss nach dem Clonen von der Repo die `.gitconfig` local includieren. (Gilt nur für diese Repo)
 
+Dafür muss dieses Kommando einmal zu Beginn im Ordner der Repo ausgeführt werden.
 ```shell
 git config --local include.path ../.gitconfig
 ```
@@ -31,16 +32,19 @@ git config --local include.path ../.gitconfig
 == Konventionen
 
 === Dokumentation:
-Der Branch `main` enthält eine abgesegnete Dokumentation.
-Der Branch `dev` (development) enthält aktuelle Änderungen.
 
-Es gibt für jede Iteration einen Pull Request (Stand von development wird auf main gepackt):
+====== Branches
+* `main` enthält eine abgesegnete Dokumentation.
+* `iterarion-_n_` enthalten die Änderungen der entsprechenden Iteration.
 
-* 	Hier können die Änderungen reviewed werden, Hinweise gegeben werden etc.
-** 	Wie und warum?
-* 	_Rebase and merge_ erfolgt durch Julian/Jonas/Carl/? durch:
-** 	git checkout development
-**  git rebase master
+
+Paar Tage vor einem Iteration-Ende wird ein Pull Request erstellt, wo ein Review stattfindet. Probleme während der Iteration können in den entsprechenden Issues kommentiert werden.
+
+// * 	Hier können die Änderungen reviewed werden, Hinweise gegeben werden etc.
+// ** 	Wie und warum?
+// * 	_Rebase and merge_ erfolgt durch Julian/Jonas/Carl/? durch:
+// ** 	git checkout development
+// **  git rebase master
 
 
 === Entwicklung:
@@ -71,47 +75,46 @@ Wir befinden uns im Repository _Dokumentation_.
 
 
 === Issue bearbeiten
-* Lokal mit VSCode auf dem Branch `dev` das Issue bearbeiten
-* Vor dem `git push` einen `git pull` ausführen, um lokale Dateien auf den neuesten Stand zu bringen
-** *VSCode*: Sync Icon neben dem Branchauswahlmenü klicken
-** *GitHub Desktop*: letzten Tab zum synchronisieren klicken
+* Lokal mit VSCode auf dem entsprechenden Iteration-Branch `iterartion-_n_` das Issue bearbeiten
 
+[WARNING]
+====
+Vor dem `git push` einen `git pull` ausführen, um lokale Dateien auf den neuesten Stand zu bringen.
 
-=== Git Rebase
+* *VSCode*: Sync Icon neben dem Branchauswahlmenü klicken
+* *GitHub Desktop*: letzten Tab zum synchronisieren klicken
+====
 
-> Wie kann ich meinen Branch `dev` auf den Stand von Branch `main` bringen?
+=== Git Pull (Rebase)
 
-*Wann?* -> Wenn im Branch `main` Änderungen existieren, die ich in `dev` benötige.
+> Wie kann ich meine lokalen Änderungen auf den neuesten Stand von Branch `iteration-_n_` bringen?
 
 ==== Was ist ein Rebase?
 Mit einem Rebase werden bestehende Änderungen nicht zusammengemischt wie beim Merge, was einen extra Commit (Merge-Commit) erzeugt, sondern die Commits an einen neuen Ursprung verschoben. Dabei wird sozusagen die "Geschichte neu geschrieben".
 
 Einen Rebase darf man nur machen, wenn man sich sicher ist, dass keiner mehr an der aktuellen Branch arbeitet, da es zu unangenehmen Synchronisierungsproblemen kommt.
 
-* Gute Erklärung: https://www.atlassian.com/de/git/tutorials/rewriting-history/git-rebase
+* Erklärung: https://www.atlassian.com/de/git/tutorials/rewriting-history/git-rebase
 
 *Was ist der Vorteil?*
 
-> Ein sauberer, linearer Commit-Verlauf.
+> Ein sauberer, geradliniger Commit-Verlauf.
 
 ==== Anleitung GUI
 
 ===== GitHub Dektop
 
-. Branch `dev` auswählen
-. Branch -> `Rebase Current Branch` (kbd:[Ctrl + Shift + E])
-. 	Auswahl von main -> `Start Rebase`
+. (Aktuellen `iteration-_n_`-Branch auswählen)
+. Menü `Branch` -> `Rebase Current Branch` (kbd:[Ctrl + Shift + E])
+. 	Auswahl von `*origin*/iteration-_n_` -> `Start Rebase`
 .. 	Wenn Konflikte: `Open in Visual Studio Code`
 .. 	VSCode öffnet sich und Konflikte können behoben werden (farbliche Darstellung)
 .. 	In der Datei befinden sich jetzt Marker, die entfernt werden müssen. Der Inhalt kann nach belieben angepasst werden. Am Besten sollte aber nur der Konflikt gelöst werden. https://www.atlassian.com/de/git/tutorials/using-branches/merge-conflicts[Weitere Infos]
 . 	`Continue Rebase`
 
-====== Spezial
-
 === Rebase Conflict lösen
 
-
-
+https://www.atlassian.com/de/git/tutorials/using-branches/merge-conflicts
 
 
 
