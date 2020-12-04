@@ -1,2 +1,3 @@
-pull.rebase=true
-pull.ff=only
+[pull]
+  rebase=true
+  ff=only
